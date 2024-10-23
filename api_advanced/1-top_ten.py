@@ -1,36 +1,15 @@
 #!/usr/bin/python3
 """
-This module contains functions to interact with the Reddit API.
+Reddit API top posts retrieval module.
 
-It provides functionality to retrieve and print titles of hot posts
-from a specified subreddit using Reddit's public API endpoints.
-
-Functions:
-    top_ten(subreddit): Prints titles of the first 10 hot posts
-    for a given subreddit
+This module provides functionality for retrieving hot posts from Reddit
+using the Reddit API.
 """
 import requests
 
 
 def top_ten(subreddit):
-    """
-    Query the Reddit API and print the titles of the first 10 hot posts
-    for a given subreddit.
-
-    Args:
-        subreddit (str): The name of the subreddit to query.
-                        Do not include the /r/ prefix.
-
-    Returns:
-        None: This function prints the titles and doesn't return anything.
-              Prints None if the subreddit is invalid or an error occurs.
-
-    Example:
-        >>> top_ten("python")
-        [Prints first 10 hot post titles from r/python]
-        >>> top_ten("this_subreddit_does_not_exist")
-        None
-    """
+    """Function that queries Reddit API and prints first 10 hot posts titles."""
     # Reddit API URL for hot posts
     url = f"https://www.reddit.com/r/{subreddit}/hot.json"
 
