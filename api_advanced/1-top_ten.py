@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Module that queries the Reddit API and prints top ten hot posts."""
+"""Queries the Reddit API and prints top ten hot posts."""
 import json
 import requests
 import sys
