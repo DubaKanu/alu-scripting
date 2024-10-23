@@ -7,30 +7,35 @@ import sys
 
 def top_ten(subreddit):
     """Print titles of the first 10 hot posts for a given subreddit."""
-    url = 'https://www.reddit.com/r/{}/hot/.json'.format(subreddit)
+    url = "https://www.reddit.com/r/{}/hot/.json".format(subreddit)
     headers = {
-        'User-Agent': 'linux:0.1.0 (by /u/your_username)'
+        "User-Agent": "linux:0.1.0 (by /u/your_username)"
     }
     params = {
-        'limit': 10
+        "limit": 10
     }
 
     try:
-        response = requests.get(url, headers=headers, params=params,
-                              allow_redirects=False)
-        if response.status_code == 404:
-            print("None")
-            return
-        response_dict = response.json()
-        posts = response_dict.get('data', {}).get('children', [])
-        
-        if not posts:
-            print("None")
+        response = requests.get(
+            url,
+            headers=headers,
+            params=params,
+            allow_redirects=False
+        )
+
+        if response.status_code != 200:
+            print(None)
             return
 
-        for post in posts:
-            print(post.get('data', {}).get('title'))
+        data = response.json().get("data", {})
+        children = data.get("children", [])
+
+        if not children:
+            print(None)
+            return
+
+        for child in children:
+            print(child.get("data", {}).get("title", ""))
 
     except Exception:
-        print("None")
-        return
+        print(None)
