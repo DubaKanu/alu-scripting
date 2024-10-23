@@ -1,5 +1,13 @@
 #!/usr/bin/python3
 
+"""
+This module provides functions for querying the Reddit API to retrieve information about subreddits and posts.
+
+Currently, it includes the following functionalities:
+
+  * `top_ten(subreddit)`: This function queries the Reddit API to get the titles of the top 10 hot posts for a given subreddit.
+"""
+
 import requests
 
 def top_ten(subreddit):
