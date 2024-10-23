@@ -20,7 +20,46 @@ def number_of_subscribers(subreddit):
   headers = {"User-Agent": "MyCoolScript/1.0"}
 
   # Send a GET request without following redirects
-  response = requests.get(url, allow_redirects=False, headers=headers)
+  response = requests.get(url, allow_redirects=False, headers=headers)#!/usr/bin/python3
+"""
+Module to query the Reddit API and get the number of subscribers
+for a given subreddit.
+"""
+import requests
+
+
+def number_of_subscribers(subreddit):
+    """
+    Queries the Reddit API and returns the number of subscribers
+    for a given subreddit.
+
+    Args:
+        subreddit (str): The name of the subreddit to query
+
+    Returns:
+        int: Number of subscribers if subreddit is valid, 0 otherwise
+    """
+    # Reddit API URL
+    url = f"https://www.reddit.com/r/{subreddit}/about.json"
+
+    # Custom headers to avoid Too Many Requests error
+    headers = {
+        'User-Agent': 'linux:0.1.0 (by /u/your_username)'
+    }
+
+    try:
+        # Make GET request to Reddit API
+        response = requests.get(url, headers=headers, allow_redirects=False)
+
+        # Check if request was successful
+        if response.status_code == 200:
+            data = response.json()
+            return data['data']['subscribers']
+        else:
+            return 0
+
+    except Exception:
+        return 0
 
   # Check for successful response (200 OK)
   if response.status_code == 200:
